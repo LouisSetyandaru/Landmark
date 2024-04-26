@@ -2,7 +2,7 @@
 //  LandmarkList.swift
 //  WatchLandmarks Watch App
 //
-//  Created by student on 25/04/24.
+//  Created by student on 26/04/24.
 //
 
 import SwiftUI
