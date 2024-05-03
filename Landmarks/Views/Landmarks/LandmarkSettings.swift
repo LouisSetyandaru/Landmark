@@ -7,22 +7,23 @@
 
 import SwiftUI
 
+// Struct LandmarkSettings menampilkan pengaturan landmark.
 struct LandmarkSettings: View {
-    @AppStorage("MapView.zoom")
-    private var zoom: MapView.Zoom = .medium
+    @AppStorage("MapView.zoom") // Menggunakan penyimpanan aplikasi untuk mengatur zoom peta.
+    private var zoom: MapView.Zoom = .medium // Nilai zoom peta.
     
     var body: some View {
         Form {
-            Picker("Map Zoom:", selection: $zoom) {
-                ForEach(MapView.Zoom.allCases) { level in
-                    Text(level.rawValue)
+            Picker("Map Zoom:", selection: $zoom) { // Picker untuk memilih level zoom peta.
+                ForEach(MapView.Zoom.allCases) { level in // Iterasi melalui semua kasus zoom peta.
+                    Text(level.rawValue) // Menampilkan teks untuk setiap level zoom.
                 }
             }
-            .pickerStyle(.inline)
+            .pickerStyle(.inline) // Mengatur gaya picker menjadi inline.
         }
-        .frame(width: 300)
-        .navigationTitle("Landmark Settings")
-        .padding(80)
+        .frame(width: 300) // Mengatur lebar frame form.
+        .navigationTitle("Landmark Settings") // Judul navigasi.
+        .padding(80) // Padding untuk meningkatkan jarak antara konten dan tepi layar.
     }
 }
 
