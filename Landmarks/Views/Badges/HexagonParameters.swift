@@ -10,15 +10,15 @@ import CoreGraphics
 
 struct HexagonParameters {
     struct Segment {
-        let line: CGPoint
-        let curve: CGPoint
-        let control: CGPoint
+        let line: CGPoint // Titik akhir garis.
+        let curve: CGPoint // Titik kurva.
+        let control: CGPoint // Titik kontrol.
     }
 
-
+    // Penyesuaian untuk memposisikan segi enam dengan benar.
     static let adjustment: CGFloat = 0.085
 
-
+    // Array dari segmen-segmen yang membentuk segi enam.
     static let segments = [
         Segment(
             line:    CGPoint(x: 0.60, y: 0.05),
