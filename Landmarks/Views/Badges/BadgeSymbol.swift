@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-
+// Struct BadgeSymbol untuk menampilkan simbol badge.
 struct BadgeSymbol: View {
     static let symbolColor = Color(red: 79.0 / 255, green: 79.0 / 255, blue: 191.0 / 255)
 
 
     var body: some View {
-        GeometryReader { geometry in
-            Path { path in
+        GeometryReader { geometry in // Membaca geometri dari tata letak.
+            Path { path in // Membuat path untuk simbol badge.
                 let width = min(geometry.size.width, geometry.size.height)
                 let height = width * 0.75
                 let spacing = width * 0.030
@@ -23,7 +23,7 @@ struct BadgeSymbol: View {
                 let topHeight = height * 0.488
 
 
-                path.addLines([
+                path.addLines([ // Menambahkan garis-garis pada path.
                     CGPoint(x: middle, y: spacing),
                     CGPoint(x: middle - topWidth, y: topHeight - spacing),
                     CGPoint(x: middle, y: topHeight / 2 + spacing),
@@ -31,8 +31,8 @@ struct BadgeSymbol: View {
                     CGPoint(x: middle, y: spacing)
                 ])
                 
-                path.move(to: CGPoint(x: middle, y: topHeight / 2 + spacing * 3))
-                path.addLines([
+                path.move(to: CGPoint(x: middle, y: topHeight / 2 + spacing * 3)) // Memindahkan path ke titik tertentu.
+                path.addLines([ // Menambahkan garis-garis pada path.
                     CGPoint(x: middle - topWidth, y: topHeight + spacing),
                     CGPoint(x: spacing, y: height - spacing),
                     CGPoint(x: width - spacing, y: height - spacing),
@@ -40,7 +40,7 @@ struct BadgeSymbol: View {
                     CGPoint(x: middle, y: topHeight / 2 + spacing * 3)
                 ])
             }
-            .fill(Self.symbolColor)
+            .fill(Self.symbolColor) // Mengisi path dengan warna simbol badge.
         }
     }
 }
