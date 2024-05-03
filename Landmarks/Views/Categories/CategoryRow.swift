@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-
+// Struct CategoryRow menampilkan baris kategori dengan item-itemnya.
 struct CategoryRow: View {
-    var categoryName: String
-    var items: [Landmark]
-    
+    var categoryName: String // Nama kategori.
+    var items: [Landmark] // Item-item dalam kategori tersebut.
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -20,9 +19,10 @@ struct CategoryRow: View {
                 .padding(.leading, 15)
                 .padding(.top, 5)
             
-            
+            // ScrollView horizontal untuk menampilkan item-item kategori.
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
+                    // Loop melalui setiap landmark dalam kategori untuk membuat CategoryItem.
                     ForEach(items) { landmark in
                         NavigationLink {
                             LandmarkDetail(landmark: landmark)
@@ -32,7 +32,7 @@ struct CategoryRow: View {
                     }
                 }
             }
-            .frame(height: 185)
+            .frame(height: 185) // Menetapkan tinggi untuk ScrollView.
         }
     }
 }
