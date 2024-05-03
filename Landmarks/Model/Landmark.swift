@@ -24,22 +24,26 @@ struct Landmark: Hashable, Codable, Identifiable {
         case rivers = "Rivers"
         case mountains = "Mountains"
     }
-    
+    // Properti string yang menyimpan nama gambar landmark.
     private var imageName: String
+    // Komputasi properti yang mengembalikan gambar dari landmark.
     var image: Image {
         Image(imageName)
     }
+    // Komputasi properti yang mengembalikan gambar fitur dari landmark jika tersedia.
     var featureImage: Image? {
         isFeatured ? Image(imageName + "_feature") : nil
     }
     
-    
+    // Properti yang menyimpan koordinat geografis dari landmark.
     private var coordinates: Coordinates
+    // Komputasi properti yang mengembalikan koordinat dari landmark dalam tipe CLLocationCoordinate2D.
     var locationCoordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(
             latitude: coordinates.latitude,
             longitude: coordinates.longitude)
     }
+    // Struktur Coordinates merepresentasikan koordinat geografis landmark.
     struct Coordinates: Hashable, Codable {
         var latitude: Double
         var longitude: Double
