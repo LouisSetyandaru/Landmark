@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-
+// Struct RotatedBadgeSymbol untuk menampilkan simbol badge yang diputar.
 struct RotatedBadgeSymbol: View {
     let angle: Angle
     
