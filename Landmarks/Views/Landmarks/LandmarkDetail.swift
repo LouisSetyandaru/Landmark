@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-
+// Struct LandmarkDetail menampilkan detail dari suatu landmark.
 struct LandmarkDetail: View {
-    @Environment(ModelData.self) var modelData
-    var landmark: Landmark
+    @Environment(ModelData.self) var modelData // Data model yang digunakan.
+    var landmark: Landmark // Landmark yang akan ditampilkan.
 
-
+    // Index dari landmark dalam data model.
     var landmarkIndex: Int {
         modelData.landmarks.firstIndex(where: { $0.id == landmark.id })!
     }
@@ -21,13 +21,13 @@ struct LandmarkDetail: View {
     var body: some View {
         @Bindable var modelData = modelData
 
-
+        // Tampilan detail landmark dalam ScrollView.
         ScrollView {
-            MapView(coordinate: landmark.locationCoordinate)
+            MapView(coordinate: landmark.locationCoordinate) // Menampilkan peta lokasi landmark.
                 .frame(height: 300)
 
 
-            CircleImage(image: landmark.image)
+            CircleImage(image: landmark.image) // Menampilkan gambar landmark.
                 .offset(y: -130)
                 .padding(.bottom, -130)
 
@@ -54,11 +54,11 @@ struct LandmarkDetail: View {
 
                 Text("About \(landmark.name)")
                     .font(.title2)
-                Text(landmark.description)
+                Text(landmark.description) // Deskripsi tentang landmark.
             }
             .padding()
         }
-        .navigationTitle(landmark.name)
+        .navigationTitle(landmark.name) // Judul navigasi.
         .navigationBarTitleDisplayMode(.inline)
     }
 }
