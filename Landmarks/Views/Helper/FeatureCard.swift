@@ -12,19 +12,21 @@ struct FeatureCard: View {
 
 
     var body: some View {
+        // Menampilkan gambar fitur landmark.
         landmark.featureImage?
             .resizable()
             .overlay {
+                // Menambahkan teks overlay di atas gambar.
                 TextOverlay(landmark: landmark)
             }
     }
 }
 
-
+// TextOverlay adalah tampilan yang menampilkan teks di atas gambar fitur.
 struct TextOverlay: View {
-    var landmark: Landmark
+    var landmark: Landmark // Landmark yang akan ditampilkan dalam teks overlay.
 
-
+    // Gradient untuk latar belakang teks overlay.
     var gradient: LinearGradient {
         .linearGradient(
             Gradient(colors: [.black.opacity(0.6), .black.opacity(0)]),
@@ -35,7 +37,7 @@ struct TextOverlay: View {
 
     var body: some View {
         ZStack(alignment: .bottomLeading) {
-            gradient
+            gradient // Menampilkan latar belakang gradient.
             VStack(alignment: .leading) {
                 Text(landmark.name)
                     .font(.title)
