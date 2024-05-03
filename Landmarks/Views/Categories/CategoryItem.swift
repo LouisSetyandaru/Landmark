@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-
+// Struct CategoryItem menampilkan item dalam kategori.
 struct CategoryItem: View {
-    var landmark: Landmark
+    var landmark: Landmark // Landmark yang akan ditampilkan.
 
 
     var body: some View {
@@ -23,7 +23,7 @@ struct CategoryItem: View {
                 .foregroundStyle(.primary)
                 .font(.caption)
         }
-        .padding(.leading, 15)
+        .padding(.leading, 15) // Padding untuk konten item.
     }
 }
 
