@@ -7,7 +7,7 @@ A view displaying information about a hike, including an elevation graph.
 
 import SwiftUI
 
-
+// Extension untuk menentukan transisi khusus.
 extension AnyTransition {
     static var moveAndFade: AnyTransition {
         .asymmetric(
@@ -17,15 +17,16 @@ extension AnyTransition {
     }
 }
 
-
+// Struct HikeView menampilkan informasi tentang suatu hike, termasuk grafik ketinggian.
 struct HikeView: View {
-    var hike: Hike
-    @State private var showDetail = true
+    var hike: Hike // Hike yang akan ditampilkan.
+    @State private var showDetail = true // State untuk menampilkan atau menyembunyikan detail hike.
 
 
     var body: some View {
         VStack {
             HStack {
+                // Menampilkan grafik ketinggian hike.
                 HikeGraph(hike: hike, path: \.elevation)
                     .frame(width: 50, height: 30)
 
@@ -39,7 +40,7 @@ struct HikeView: View {
 
                 Spacer()
 
-
+                // Tombol untuk menampilkan atau menyembunyikan detail hike.
                 Button {
                     withAnimation {
                         showDetail.toggle()
@@ -54,7 +55,7 @@ struct HikeView: View {
                 }
             }
 
-
+            // Menampilkan detail hike jika showDetail aktif.
             if showDetail {
                 HikeDetail(hike: hike)
                     .transition(.moveAndFade)
