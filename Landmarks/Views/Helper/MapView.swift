@@ -11,10 +11,11 @@ import MapKit
 struct MapView: View {
     var coordinate: CLLocationCoordinate2D
     
+    // Binding untuk mengontrol level zoom peta.
     @AppStorage("MapView.zoom")
        private var zoom: Zoom = .medium
 
-    
+    // Enumerasi untuk mengatur level zoom peta.
     enum Zoom: String, CaseIterable, Identifiable {
         case near = "Near"
         case medium = "Medium"
@@ -25,7 +26,7 @@ struct MapView: View {
             return self
         }
     }
-    
+    // Properti untuk menentukan perbedaan koordinat antara pusat peta dan titik yang ditampilkan.
     var delta: CLLocationDegrees {
             switch zoom {
             case .near: return 0.02
@@ -36,8 +37,9 @@ struct MapView: View {
     
     
     var body: some View {
-        Map(position: .constant(.region(region)))
+        Map(position: .constant(.region(region))) // Menampilkan peta dengan menggunakan region yang ditentukan.
     }
+    // Properti privat yang mengembalikan region peta berdasarkan koordinat dan level zoom yang diberikan.
     private var region: MKCoordinateRegion {
         MKCoordinateRegion(
             center: coordinate,
