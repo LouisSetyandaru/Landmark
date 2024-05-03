@@ -7,6 +7,7 @@ The elevation, heart rate, and pace of a hike plotted on a graph.
 
 import SwiftUI
 
+// Extension untuk menentukan animasi untuk setiap GraphCapsule.
 extension Animation {
     static func ripple(index: Int) -> Animation {
             Animation.spring(dampingFraction: 0.5)
@@ -15,10 +16,12 @@ extension Animation {
     }
 }
 
+// Struct HikeGraph menampilkan grafik untuk suatu hike.
 struct HikeGraph: View {
-    var hike: Hike
-    var path: KeyPath<Hike.Observation, Range<Double>>
+    var hike: Hike // Hike yang akan ditampilkan.
+    var path: KeyPath<Hike.Observation, Range<Double>> // Path data yang akan ditampilkan.
 
+    // Warna untuk jenis data yang ditampilkan.
     var color: Color {
         switch path {
         case \.elevation:
@@ -34,9 +37,9 @@ struct HikeGraph: View {
 
     var body: some View {
         let data = hike.observations
-        let overallRange = rangeOfRanges(data.lazy.map { $0[keyPath: path] })
-        let maxMagnitude = data.map { magnitude(of: $0[keyPath: path]) }.max()!
-        let heightRatio = 1 - CGFloat(maxMagnitude / magnitude(of: overallRange))
+        let overallRange = rangeOfRanges(data.lazy.map { $0[keyPath: path] }) // Rentang keseluruhan data.
+        let maxMagnitude = data.map { magnitude(of: $0[keyPath: path]) }.max()! // Nilai maksimum dalam data.
+        let heightRatio = 1 - CGFloat(maxMagnitude / magnitude(of: overallRange)) // Perbandingan tinggi grafik.
 
         return GeometryReader { proxy in
             HStack(alignment: .bottom, spacing: proxy.size.width / 120) {
@@ -56,6 +59,7 @@ struct HikeGraph: View {
     }
 }
 
+// Fungsi untuk menemukan rentang dari kumpulan rentang.
 func rangeOfRanges<C: Collection>(_ ranges: C) -> Range<Double>
     where C.Element == Range<Double> {
     guard !ranges.isEmpty else { return 0..<0 }
@@ -63,7 +67,7 @@ func rangeOfRanges<C: Collection>(_ ranges: C) -> Range<Double>
     let high = ranges.lazy.map { $0.upperBound }.max()!
     return low..<high
 }
-
+// Fungsi untuk menghitung magnitudo dari rentang.
 func magnitude(of range: Range<Double>) -> Double {
     range.upperBound - range.lowerBound
 }
