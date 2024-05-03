@@ -7,10 +7,12 @@ A view showing the details for a hike.
 
 import SwiftUI
 
+// Struct HikeDetail menampilkan detail untuk suatu hike.
 struct HikeDetail: View {
-    let hike: Hike
-    @State var dataToShow = \Hike.Observation.elevation
+    let hike: Hike // Hike yang akan ditampilkan.
+    @State var dataToShow = \Hike.Observation.elevation // Path data yang ditampilkan secara default.
 
+    // Daftar tombol untuk memilih data yang ditampilkan.
     var buttons = [
         ("Elevation", \Hike.Observation.elevation),
         ("Heart Rate", \Hike.Observation.heartRate),
@@ -19,9 +21,11 @@ struct HikeDetail: View {
 
     var body: some View {
         VStack {
+            // Menampilkan grafik untuk hike dengan path data yang dipilih.
             HikeGraph(hike: hike, path: dataToShow)
                 .frame(height: 200)
 
+            // Tombol-tombol untuk memilih data yang ditampilkan.
             HStack(spacing: 25) {
                 ForEach(buttons, id: \.0) { value in
                     Button {
