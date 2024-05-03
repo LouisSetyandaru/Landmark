@@ -11,7 +11,7 @@ struct LandmarkList: View {
     @Environment(ModelData.self) var modelData
     @State private var showFavoritesOnly = false
 
-
+    // Daftar landmark yang difilter berdasarkan preferensi pengguna.
     var filteredLandmarks: [Landmark] {
         modelData.landmarks.filter { landmark in
             (!showFavoritesOnly || landmark.isFavorite)
@@ -21,12 +21,14 @@ struct LandmarkList: View {
 
     var body: some View {
         NavigationSplitView {
+            // Daftar landmark yang dapat digulirkan.
             List {
+                // Tombol toggle untuk menampilkan hanya favorit atau semua landmark.
                 Toggle(isOn: $showFavoritesOnly) {
                     Text("Favorites only")
                 }
 
-
+                // Loop untuk menampilkan setiap landmark dalam daftar.
                 ForEach(filteredLandmarks) { landmark in
                     NavigationLink {
                         LandmarkDetail(landmark: landmark)
@@ -38,6 +40,7 @@ struct LandmarkList: View {
             .animation(.default, value: filteredLandmarks)
             .navigationTitle("Landmarks")
         } detail: {
+            // Tampilan detail yang menampilkan pesan "Select a Landmark".
             Text("Select a Landmark")
         }
     }
